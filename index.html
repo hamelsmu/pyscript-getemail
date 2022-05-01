@@ -28,17 +28,19 @@ emails = set()
 
 def add_task(*ags, **kws):
     usernm = new_task_content.element.value
-    res = json.loads(open_url(f"https://api.github.com/users/{usernm}/events/public").read())
-    commits = [x.get('payload', {}).get('commits', {}) for x in res if 'payload' in x]
-    for c in commits:
-        for x in c: 
-            author = x.get('author')
-            if author:
-                name = author.get('name')
-                if 'github-action' not in name: emails.add(f"{name}: {author.get('email')}")
-    
-    print(emails)
-    pyscript.write("emaildiv", emails)
+    if usernm.strip() == 'hamelsmu': pyscript.write("emaildiv", '@hamelsmu is the author of this app, so he has the privilege of showing you this message instead :)')
+    else:
+        res = json.loads(open_url(f"https://api.github.com/users/{usernm}/events/public").read())
+        commits = [x.get('payload', {}).get('commits', {}) for x in res if 'payload' in x]
+        for c in     commits:
+            for x in c: 
+                author = x.get('author')
+                if author:
+                    name = author.get('name')
+                    if 'github-action' not in name: emails.add(f"{name}: {author.get('email')}")
+        
+        print(emails)
+        pyscript.write("emaildiv", emails)
     emails.clear()
 
 def add_task_event(e):
@@ -49,7 +51,7 @@ def add_task_event(e):
 
     <center>
     <br>
-    <p>All names and emails contained in recent commit history will be displayed below:</p>
+    <p>All names and emails contained in recent public commit history will be displayed below:</p>
     <br>
     <div id="emaildiv" class="font-mono"></div> 
     </center>   
