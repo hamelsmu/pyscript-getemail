@@ -11,14 +11,19 @@
   <body class="container">
     <div class="text-center w-full mb-8">
         <h1 class="text-3xl font-bold text-gray-800 tracking-tight">Find An Email With A GitHub Username</h1>
-        <h4 >This app was made with pyscript. <a style="color:blue;" href="https://github.com/hamelsmu/pyscript-getemail/tree/main">See the code!</a></h4>
+        <p>This app was made with pyscript. <a style="color:blue;" href="https://github.com/hamelsmu/pyscript-getemail/tree/main">See the code!</a></p>
       </div>
+      <br>
+      <br>
       <center><div>
-        <input id="gh" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="text">
+        <p></p>
+        <label><strong>Input a GitHub username 👉 </strong><input id="gh" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="text"></label>
         <button id="gh-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="add_task">
           Submit
         </button>
       </div></center>
+      <br>
+      <br>
     <py-script>
 import json
 new_task_content = Element("gh")
